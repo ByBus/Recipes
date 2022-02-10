@@ -1,7 +1,7 @@
 package recipes.memory;
 
-public interface Savable<T> {
-    void save(T recipe);
+public interface Savable<T, R> {
+    R save(T object);
 
-    T restore();
+    T restore(R id);
 }

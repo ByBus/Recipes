@@ -1,25 +1,33 @@
 package recipes;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import recipes.memory.Savable;
+import recipes.models.IdDTO;
+import recipes.models.Recipe;
 
 @RestController
 public class RequestsHandler {
-    @Autowired
-    Savable<Recipe> memory;
+    Savable<Recipe, Integer> memory;
 
-    @GetMapping("/api/recipe")
-    public Recipe getRecipe() {
-        return memory.restore();
+    @Autowired
+    public RequestsHandler(Savable<Recipe, Integer> memory) {
+        this.memory = memory;
     }
 
-    @PostMapping("/api/recipe")
-    public void saveRecipe(@RequestBody Recipe recipe) {
-        memory.save(recipe);
+    @GetMapping("/api/recipe/{id}")
+    public Recipe getRecipe(@PathVariable int id) {
+        Recipe recipe = memory.restore(id);
+        if (recipe == null) {
+            throw new RecipeNotFoundException("Recipe not found");
+        }
+        return memory.restore(id);
+    }
+
+    @PostMapping("/api/recipe/new")
+    public IdDTO saveRecipe(@RequestBody Recipe recipe) {
+        int newId = memory.save(recipe);
+        return new IdDTO(newId);
     }
 
 }
