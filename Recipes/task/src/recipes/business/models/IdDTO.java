@@ -1,4 +1,4 @@
-package recipes.models;
+package recipes.business.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,5 +6,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class IdDTO {
-    private final int id;
+    private final long id;
 }
