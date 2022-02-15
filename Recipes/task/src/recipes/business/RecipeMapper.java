@@ -10,6 +10,7 @@ public class RecipeMapper implements Mappable<RecipeDTO, RecipeEntity> {
     @Override
     public RecipeEntity mapToEntity(RecipeDTO recipe) {
         return new RecipeEntity(recipe.getName(),
+                recipe.getCategory(),
                 recipe.getDescription(),
                 recipe.getIngredients(),
                 recipe.getDirections());
@@ -18,6 +19,8 @@ public class RecipeMapper implements Mappable<RecipeDTO, RecipeEntity> {
     @Override
     public RecipeDTO mapToDTO(RecipeEntity recipe) {
         return new RecipeDTO(recipe.getName(),
+                recipe.getCategory(),
+                recipe.getDate(),
                 recipe.getDescription(),
                 recipe.getIngredients(),
                 recipe.getDirections());
