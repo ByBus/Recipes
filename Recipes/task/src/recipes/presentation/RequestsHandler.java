@@ -46,8 +46,7 @@ public class RequestsHandler {
     @PostMapping("/api/recipe/new")
     public ResponseEntity<?> saveRecipe(@AuthenticationPrincipal UserDetails details,
                                         @Valid @RequestBody RecipeDTO recipeDTO) {
-        String username = details.getUsername();
-        UserEntity user = service.getUserByEmail(username);
+        UserEntity user = service.getUserByEmail(details.getUsername());
         RecipeEntity recipe = service.updateUserRecipe(user, mapper.mapToEntity(recipeDTO));
         return new ResponseEntity<>(new IdDTO(recipe.getId()), HttpStatus.OK);
     }
