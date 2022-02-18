@@ -1,7 +1,9 @@
 package recipes.business;
 
 public interface Mappable<T, U> {
-    U mapToEntity(T recipe);
+    U mapToEntity(T objFrom);
 
-    T mapToDTO(U recipe);
+    T mapToDTO(U objFrom);
+
+    void update(T objFrom, U objTo);
 }

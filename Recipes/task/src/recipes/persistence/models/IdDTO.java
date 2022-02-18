@@ -1,4 +1,4 @@
-package recipes.business.models;
+package recipes.persistence.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

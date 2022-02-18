@@ -28,4 +28,5 @@ dependencies {
     implementation 'com.h2database:h2'      //for H2 database
     implementation 'org.springframework.boot:spring-boot-starter-actuator'       // for 'shutdown' command
     implementation 'org.springframework.boot:spring-boot-starter-validation'     // for @NotBlank and @NotEmpty validation of your fields in your Recipes object
+    implementation 'org.springframework.boot:spring-boot-starter-security' // Security
 }
